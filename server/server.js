@@ -9,6 +9,6 @@ let app = express();
 app.use(cors());                      
 app.use(express.json());        // use body parser middleware to parse posted JSON content into JS
 
-app.use('./api', apiRouter);
+app.use('/api', apiRouter);
 
 app.listen(3000);
