@@ -1,0 +1,17 @@
+.panel, .chirps {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    color: white;
+    font-size: 100px;
+}
+
+body {
+    background-color: rgb(188, 192, 196);
+}
+
+input {
+    font-size: 30px;
+}
