@@ -13,9 +13,11 @@ $(document).ready(function () {
         console.log(entries)
 
         for (const [id, chirp] of entries) {
-            chirps.push(`${id} ${chirp.user}: ${chirp.text}`)
+            chirps.push(`${id} ${chirp.user}: ${chirp.text}`);
+            
         }
-        chirps.map(chirp => $('<div></div>').text(chirp).appendTo('.current'))          // create a div containing all the chirps, append to body
+        chirps.pop();
+        chirps.map(chirp => $('<p></p>').text(chirp).attr('id', 'chirps').appendTo('.current'))          // create a div containing all the chirps, append to body
     }
 
 
