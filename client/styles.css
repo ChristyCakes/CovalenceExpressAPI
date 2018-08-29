@@ -1,4 +1,4 @@
-.panel, .chirps {
+.panel, .input {
     display: flex;
     justify-content: center;
 }
@@ -14,4 +14,8 @@ body {
 
 input {
     font-size: 30px;
+}
+
+h2 {
+    color: rgb(29, 161, 242)
 }

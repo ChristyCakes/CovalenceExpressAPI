@@ -1,23 +1,33 @@
 $(document).ready(function () {
 
 
+    // create jquery element to display all chirps
+    //let allChirps = document.createElement('div')
 
+    let chirps = [];
 
-
+    // handle API request
     function handleResponse(data) {
-        console.log('the ajax request has finished!');
-        console.log(data);
+        let entries = Object.entries(data)
+
+        console.log(entries)
+
+        for (const [id, chirp] of entries) {
+            chirps.push(`${id} ${chirp.user}: ${chirp.text}`)
+        }
+        chirps.map(chirp => $('<div></div>').text(chirp).appendTo('.current'))          // create a div containing all the chirps, append to body
     }
-    
-    $.ajax({                                            // use ajax request to call api
+
+
+
+
+    // use ajax request to call api
+    $.ajax({
         method: "GET",
         url: 'http://127.0.0.1:3000/api/chirps',        // or use localhost:3000
-        contentType: "application/json",
-        dataType: 'json'
-        // data: JSON.stringify(data)
     }).then(handleResponse)
-    .catch(err => console.log(err));
-    
+        .catch(err => console.log(err));
+
 
 
 
