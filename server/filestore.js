@@ -23,7 +23,7 @@ let updateChirp = (id, chirp) => {          // pass in id & chirp to update exis
     writeChirps();
 }
 
-let deleteChirp = id => {                   // delete a chirp with specific id
+let deleteChirp = id => {                   // delete a chirp with specific id that correlates to its index
     delete chirps[id];
     writeChirps();
 }
