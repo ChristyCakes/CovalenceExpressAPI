@@ -8,13 +8,11 @@ $(document).ready(function () {
     function handleResponse(data) {
         // change object into array of objects for iteration
         let entries = Object.entries(data)
-        console.log(entries)
-        // destructure entries array & extract user, text, & timestamp in an object to chirps array
+        // destructure entries array & extract user, text in an object to chirps array
         for (const [id, data] of entries) {
             chirps.push({
                 "user": `${data.user}`,
                 "text": `${data.text}`, 
-                "time": `${data.time}`,
                 "id": `${id}`
             });
         }
@@ -42,8 +40,6 @@ $(document).ready(function () {
     $('#submit').click(() => {
         user = $('#user').val();
         text = $('#text').val();
-        // get a timestamp
-        let time = (new Date().getTime())
         // make a post request with those values
         $.ajax({
             type: "POST",
@@ -52,7 +48,6 @@ $(document).ready(function () {
             data: JSON.stringify({
                 "user": `${user}`,
                 "text": `${text}`,
-                "time": `${time}`
             })
         })
             .catch(err => console.log(err));
@@ -69,14 +64,6 @@ $(document).ready(function () {
             type: "DELETE",
             url: `http://127.0.0.1:3000/api/chirps/${chirpToDelete.attr('id')}`
         })
-            .then(() => console.log(`deleted chirp ${chirpToDelete.attr('id')}`))
             .catch(err => console.log(err))
     })
-
-
-
-
-
-
-
 })

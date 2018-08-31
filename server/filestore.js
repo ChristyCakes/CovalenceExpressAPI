@@ -10,7 +10,7 @@ let getChirps = () => {                 // calling getChirps will return all the
 }
 
 let getChirp = id => {                      // getChirp with id returns copy of one specfic chirp
-    return Object.assign({}, chirps[id]);   
+    return Object.assign({}, chirps[id]);   // method uses object's id to identify chirp
 }
 
 let createChirp = (chirp) => {              // createChirp creates a chirp with next available id
