@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "micromodal": "^0.3.2"
+    "express": "^4.16.3"
   }
 }

@@ -1,8 +1,4 @@
-import MicroModal from 'micromodal';            // correct position?
-
-$(document).ready(function () {
-
-    
+$(document).ready(function () {  
 
     let chirps = [];
     let user;
@@ -12,7 +8,7 @@ $(document).ready(function () {
     function handleResponse(data) {
         // change object into array of objects for iteration
         let entries = Object.entries(data)
-        // destructure entries array & extract user, text in an object to chirps array
+        // destructure entries array & extract user, text, id in an object to chirps array
         for (const [id, data] of entries) {
             chirps.push({
                 "user": `${data.user}`,
@@ -29,16 +25,14 @@ $(document).ready(function () {
             let x = $('<button>x</button>').attr('class', 'delete');
             // create paragraph containing user and text for each chirp
             let p = $(`<p>${chirp.user}: ${chirp.text}</p>`).attr({
-                // set a class for styling, set id with timestamp
+                // set a class for styling, set id
                 class: "chirps",
                 id: `${chirp.id}`,
-                dataMicromodalTrigger: "modal-1"
             // append a delete button to each paragraph
             }).append(x);
             // append each paragraph to div
             $('.current').append(p)
-        })
-        MicroModal.init();      // instantiate here?
+        })   
     }
 
     // use get request to call api
