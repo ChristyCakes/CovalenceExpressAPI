@@ -6,6 +6,7 @@
 h1 {
     color: white;
     font-size: 100px;
+    margin: 50px;
 }
 
 body {
@@ -18,7 +19,7 @@ input {
 
 h2 {
     color: rgb(29, 161, 242);
-    margin-top: 3rem;
+    margin: 3rem 0 1.5rem 0;
     font-size: 40px;
 }
 
@@ -35,6 +36,6 @@ h2 {
 
 button {
     color: rgb(59, 59, 59);
-    font-size: 20px;
+    font-size: 15px;
     margin-left: 1rem;
 }

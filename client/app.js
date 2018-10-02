@@ -1,4 +1,4 @@
-$(document).ready(function () {  
+$(document).ready(function () {
 
     let chirps = [];
     let user;
@@ -22,17 +22,19 @@ $(document).ready(function () {
         // map over array, for each object in the array ...
         chirps.map(chirp => {
             // create a delete button for each chirp, set class
-            let x = $('<button>x</button>').attr('class', 'delete');
+            let x = $('<button>x</button>').attr('class', 'delete')
             // create paragraph containing user and text for each chirp
+            // set a class for styling, set id, set attributes for modal
             let p = $(`<p>${chirp.user}: ${chirp.text}</p>`).attr({
-                // set a class for styling, set id
                 class: "chirps",
                 id: `${chirp.id}`,
-            // append a delete button to each paragraph
-            }).append(x);
-            // append each paragraph to div
+                "data-toggle": "modal",
+                "data-target": "#exampleModalCenter"
+            // append delete button to each paragraph
+            }).append(x)
+            // append each modal/paragraph to div
             $('.current').append(p)
-        })   
+        })
     }
 
     // use get request to call api
@@ -51,12 +53,12 @@ $(document).ready(function () {
                 "user": `${user}`,
                 "text": `${text}`,
             })
-        })
-            .catch(err => console.log(err));
+        }).catch(err => console.log(err));
     })
 
     // on delete button click
     $(document).on("click", ".delete", event => {
+        event.stopPropagation()
         // set variable for the button's parent (the chirp)
         let chirpToDelete = $(event.target).parent()
         // remove html chirp from display
@@ -65,7 +67,34 @@ $(document).ready(function () {
         $.ajax({
             type: "DELETE",
             url: `http://127.0.0.1:3000/api/chirps/${chirpToDelete.attr('id')}`
+        }).catch(err => console.log(err))
+    })
+
+    // on modal paragraph click, send id to modal
+    $(document).on("click", "p", event => {
+        let putid = $(event.target).attr('id')
+        $(".save").attr('id', putid)
+    })
+
+    // on save changes click in modal
+    $(".save").click(() => {
+        // set variables for chirp entry
+        user = $('#newuser').val();
+        text = $('#newtext').val();
+        let id = $(".save").attr("id")
+
+        // make a put request with entry values & id (from 2 onclicks above)
+        $.ajax({
+            type: "PUT",
+            url: `http://127.0.0.1:3000/api/chirps/${id}`,
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                "user": `${user}`,
+                "text": `${text}`,
+            })
         })
-            .catch(err => console.log(err))
+            .then(() => { $("#exampleModalCenter").modal('hide') })
+            .then(() => location.reload())
+            .catch(err => console.log(err));
     })
 })
